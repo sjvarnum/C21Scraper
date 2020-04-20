@@ -129,5 +129,7 @@ def main(state):
 if __name__ == '__main__':
     state = 'AK'
     data = main(state)
+    dte = pd.Timestamp.now()
+    tstamp = dte.strftime(format='%Y%m%dT%I%M%S')
     df = pd.DataFrame(data)
-    df.to_csv(f'C21 {state} Listings.csv', index=False)
+    df.to_csv(f'c21_{state}_property_listings_{tstamp}.csv', index=False)

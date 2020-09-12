@@ -40,8 +40,11 @@ def make_soup(url, params=None):
 def state_page(state):
     page_num = '1'
     seq_num = '00'
-    params = {'lid': f'S{state}', 't': '0', 's': seq_num,
-              'r': '20', 'p': page_num}
+    params = {'lid': f'S{state}', 
+              't': '0', 
+              's': seq_num,
+              'r': '20', 
+              'p': page_num}
     base_url = 'https://www.century21.com/propsearch-async'
     soup = make_soup(base_url, params=params)
     return soup
@@ -89,8 +92,6 @@ def main(state):
                 )
             except (AttributeError, IndexError):
                 None
-
-
             try:
                 property_dict['City'] = (
                     ' '.join(i.find('div', {'class': 'property-city'}).text.strip().split()[0:-2])
@@ -109,8 +110,6 @@ def main(state):
                 )
             except (AttributeError, IndexError):
                 None
-
-
             try:
                 property_dict['Beds'] = i.find(
                     'div', {'class': 'property-beds'}).text.strip().title()

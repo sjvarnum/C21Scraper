@@ -137,6 +137,11 @@ def main(state):
                     'div', {'class': 'property-sqft'}).text.strip().title()
             except (AttributeError, IndexError):
                 None
+            try:
+                a_tag = i.find('a', href=True)
+                property_dict['URL'] = ('https://www.century21.com' + a_tag['href'])
+            except (AttributeError, IndexError):
+                None
             properties.append(property_dict)
     return properties
 

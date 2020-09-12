@@ -89,12 +89,28 @@ def main(state):
                 )
             except (AttributeError, IndexError):
                 None
+
+
             try:
                 property_dict['City'] = (
-                    i.find('div', {'class': 'property-city'}).text.strip()
+                    ' '.join(i.find('div', {'class': 'property-city'}).text.strip().split()[0:-2])
                 )
             except (AttributeError, IndexError):
                 None
+            try:
+                property_dict['State'] = (
+                    i.find('div', {'class': 'property-city'}).text.strip().split()[-2]
+                )
+            except (AttributeError, IndexError):
+                None
+            try:
+                property_dict['Zip'] = (
+                    i.find('div', {'class': 'property-city'}).text.strip().split()[-1]
+                )
+            except (AttributeError, IndexError):
+                None
+
+
             try:
                 property_dict['Beds'] = i.find(
                     'div', {'class': 'property-beds'}).text.strip().title()
@@ -127,7 +143,7 @@ def main(state):
 
 
 if __name__ == '__main__':
-    state = 'AK'
+    state = 'TN'
     data = main(state)
     dte = pd.Timestamp.now()
     tstamp = dte.strftime(format='%Y%m%dT%I%M%S')

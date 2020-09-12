@@ -145,6 +145,8 @@ def main(state):
             properties.append(property_dict)
     return properties
 
+    
+
 
 if __name__ == '__main__':
     state = 'TN'
@@ -152,4 +154,5 @@ if __name__ == '__main__':
     dte = pd.Timestamp.now()
     tstamp = dte.strftime(format='%Y%m%dT%I%M%S')
     df = pd.DataFrame(data)
-    df.to_csv(f'c21_{state}_property_listings_{tstamp}.csv', index=False)
+    df_final = df[['Price', 'Address', 'City', 'State', 'Zip', 'Size', 'Beds', 'Baths', 'Half-Baths', 'URL']]
+    df_final.to_csv(f'c21_{state}_property_listings_{tstamp}.csv', index=False)
